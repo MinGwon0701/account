@@ -36,6 +36,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController searchController = TextEditingController();
   String searchVal = '';
+  List<String> agoSearchVal = [];
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 width: size.width * 0.83,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -75,10 +76,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   setState(() {
                     searchVal = searchController.text;
+                    if(searchVal != '')
+                      agoSearchVal.add(searchVal);
                   });
                 },
               )
             ],
+          ),
+          Container(
+            height: 50,
+            child: (agoSearchVal.isNotEmpty) ? ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: agoSearchVal.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 11, horizontal: 10),
+                    child: FlatButton(
+                      child: Text(
+                        agoSearchVal[index],
+                        style: TextStyle(fontSize: 22, color: Colors.black45),
+                      ),
+                      onPressed: () {
+                        searchController.text = agoSearchVal[index];
+                      },
+                    ),
+                  );
+                }) : Center(child: Text('이전 검색어가 없습니다.')),
           ),
           Expanded(
             child: FutureBuilder(

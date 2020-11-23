@@ -165,10 +165,3 @@ class ListAddState extends State<ListAdd> {
     );
   }
 }
-
-class MyIcon extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Icon(Icons.remove);
-  }
-}
