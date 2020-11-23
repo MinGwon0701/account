@@ -1,6 +1,7 @@
 # account
 
-A new Flutter application.
+This is an app that I made while searching. You can use it however you want.
+Thanks.  
 
 ## Getting Started
 
